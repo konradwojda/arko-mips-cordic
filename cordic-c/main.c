@@ -36,13 +36,17 @@ int* cordic(int angle)
 		int dz = ATAN_TAB[i];
 		if (z < 0)
 		{
-			dx = -dx;
-			dy = -dy;
-			dz = -dz;
+			x += dx;
+			y -= dy;
+			z += dz;
 		}
-		x -= dx;
-		y += dy;
-		z -= dz;
+		else
+		{
+			x -= dx;
+			y += dy;
+			z -= dz;
+			
+		}
 	}
 	int result[2] = {x, y};
 	return result;
@@ -51,7 +55,7 @@ int* cordic(int angle)
 
 int main()
 {
-	double angle = M_PI / 4;
+	double angle = M_PI / 2;
 	double fixed_angle = angle * SCALE;
 	double actual_sin = sin(angle);
 	double actual_cos = cos(angle);
